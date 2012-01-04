@@ -1,3 +1,23 @@
 reprepro
 
 This is the reprepro module.
+
+Usage:
+
+  include reprepro
+
+  reprepro::repository{
+    'local':
+      config => 'reprepro/local.conf.erb';
+  }
+
+It will create a local debian repository under /var/www/local.  It
+supports an incoming directory in /var/www/local/incoming.  Each time
+you run puppet it will run reprepro to process the incoming directory.
+
+This is this work in progress.
+
+You can use the local repository by adding 
+deb file:///var/www/local squeeze main contrib non-free
+to your sources.list file.
+
