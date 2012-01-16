@@ -4,4 +4,12 @@ class reprepro::install
     'reprepro':
       ensure => installed
   }
+
+  if !defined(Package["gnupg"])
+  {
+    package {
+      'gnupg':
+        ensure => installed
+    }
+  }
 }
