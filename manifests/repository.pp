@@ -1,15 +1,21 @@
-define reprepro::repository($basedir = "/var/www/${name}", $config)
+define reprepro::repository($basedir = "/var/www/${name}", $config, $owner='root', $group='root')
 {
   $dirs = [ "${basedir}/conf", "${basedir}/dists", "${basedir}/incoming", "${basedir}/indices", "${basedir}/logs", "${basedir}/pool", "${basedir}/project", "${basedir}/tmp"]
   file {
     "${basedir}":
+      owner    => root,
+      group    => root,
       ensure   => directory;
     $dirs:
+      owner    => root,
+      group    => root,
       ensure   => directory;
     "${basedir}/conf/distributions":
       ensure   => present,
       content  => template($config);
     "${basedir}/conf/incoming":
+      owner    => root,
+      group    => root,
       ensure   => present,
       content  => template('reprepro/incoming.erb');
   }  

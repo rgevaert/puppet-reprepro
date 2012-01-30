@@ -8,6 +8,8 @@ Usage:
 
   reprepro::repository{
     'local':
+      owner  => 'root', # default
+      group  => 'root', # default
       config => 'reprepro/local.conf.erb';
   }
 
