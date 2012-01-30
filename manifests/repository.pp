@@ -3,19 +3,21 @@ define reprepro::repository($basedir = "/var/www/${name}", $config, $owner='root
   $dirs = [ "${basedir}/conf", "${basedir}/dists", "${basedir}/incoming", "${basedir}/indices", "${basedir}/logs", "${basedir}/pool", "${basedir}/project", "${basedir}/tmp"]
   file {
     "${basedir}":
-      owner    => root,
-      group    => root,
+      owner    => $owner,
+      group    => $group,
       ensure   => directory;
     $dirs:
-      owner    => root,
-      group    => root,
+      owner    => $owner,
+      group    => $group,
       ensure   => directory;
     "${basedir}/conf/distributions":
+      owner    => root,
+      group    => root,
       ensure   => present,
       content  => template($config);
     "${basedir}/conf/incoming":
-      owner    => root,
-      group    => root,
+      owner    => $owner,
+      group    => $group,
       ensure   => present,
       content  => template('reprepro/incoming.erb');
   }  
