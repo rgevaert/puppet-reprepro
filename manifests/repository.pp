@@ -21,7 +21,7 @@ define reprepro::repository($basedir = "/var/www/${name}", $config, $owner='root
   }  
 
   exec {
-    'processincoming':
+    "${name}/processincoming":
       path    => '/bin:/usr/bin',
       command => "reprepro -V -b ${basedir}  processincoming default",
       onlyif  => "ls ${basedir}/incoming/*changes";
